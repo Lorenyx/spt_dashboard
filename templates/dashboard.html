@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lore's SPT Server Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+        .status, .uptime, .players {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            width: 60%;
+        }
+        .status {
+            font-size: 2rem;
+        }
+        .active {
+            background-color: #28a745;
+        }
+        .inactive {
+            background-color: #dc3545;
+        }
+        .uptime {
+            background-color: #343a40;
+        }
+        .players {
+            background-color: #444;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px;
+            border-bottom: 1px solid #666;
+        }
+    </style>
+    <meta http-equiv="refresh" content="30">
+</head>
+<body>
+    <h1>SPT-AKI Server Dashboard</h1>
+
+    <div class="status {{ 'active' if server_active else 'inactive' }}">
+        {{ 'ONLINE' if server_active else 'OFFLINE' }}
+    </div>
+
+    <div class="uptime">
+        <strong>API Server Uptime:</strong> {{ uptime }}
+    </div>
+
+    <div class="players">
+        <h2>Active Players</h2>
+        {% if players %}
+            <ul>
+                {% for player in players %}
+                    <li>
+                        <strong>{{ player['username'] }}</strong> (ID: {{ player['_id'] }}) - 
+                        Status: {{ player['status'] }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No active players or server offline.</p>
+        {% endif %}
+    </div>
+
+    <div class="profiles">
+        <h2>Players</h2>
+        {% if profiles %}
+            <ul>
+                {% for profile in profiles %}
+                    <li>{{ profile['username'] }} (ID: {{ profile['_id'] }})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No profiles found or server offline.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

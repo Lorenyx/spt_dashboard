@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPT Server Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #c0c0c0;
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #e2e2e2;
+            border-bottom: 2px solid #444;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status {
+            font-size: 2rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border: 2px solid #333;
+            background-color: #111;
+            text-align: center;
+        }
+
+        .online {
+            color: #74c365;
+        }
+
+        .offline {
+            color: #ff4e4e;
+        }
+
+        .instructions {
+            background-color: #111;
+            padding: 1.5rem;
+            border: 2px solid #333;
+            border-radius: 4px;
+        }
+
+        h2 {
+            color: #cfcfcf;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        p, li {
+            line-height: 1.6;
+            color: #b0b0b0;
+        }
+
+        ol {
+            padding-left: 1.2rem;
+        }
+
+        a {
+            color: #77aaff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            background-color: #222;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #a0e0ff;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>SPT Server Status Terminal</h1>
+
+        <div class="status {{ 'online' if server_active else 'offline' }}">
+            SERVER STATUS: {{ 'ONLINE' if server_active else 'OFFLINE' }}
+        </div>
+
+        <div class="instructions">
+            <h2>Client Setup & Connection Guide</h2>
+            <p>
+                Ready to escape? Here’s how to install and connect to this SPT server:
+            </p>
+            <ol>
+                <li>Grab the latest build from <a href="https://files.lorenyx.online/game/" target="_blank">here</a>.</li>
+                <li>Extract the files into a clean folder.</li>
+                <li>Download and run the <a href="https://hub.sp-tarkov.com/files/download/10908/">SPT-Installer</a>. This will check for needed dependencies and install the SPT files.</li>
+                <li>Download the mods from <a href="https://files.lorenyx.online/mods/">here</a>.</li>
+                <li>Extract each of the mods install the SPT folder.</li>
+                <li>Or use the <a href="https://hub.sp-tarkov.com/files/download/13038/">SPT Mods Installer</a>.</li>
+                    <ul>
+                        <li>After downloading the above installer. Place it into the root level of the SPT folder.</li>
+                        <li>Run the <code>SPT Mods Installer.exe</code>.</li>
+                        <li>Drag and drop the mods downloaded earlier into the app.</li>
+                        <li>The app may freeze while installing the mods but wait a few minutes for all the mods to finish being installed.</li>
+                    </ul>
+                <li>After all the mods and files are installed, run the <code>SPT.Launcher.exe</code>.</li>
+                <li>The launcher should fail to connect, due to the address needing to be updated. Click the gear-icon in the top-right, and update the URL to:<br>
+                    <code>{{ SPT_SERVER }}</code></li>
+                <li>Retry connecting to the server, and the launcher should be connected.</li>
+                <li>Get geared. Stay alert. Trust no one.</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Lorenyx | SPT Server
+        </div>
+    </div>
+
+</body>
+</html>
